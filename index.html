@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bib_b | Biblioteca Beca explicada</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio">bib_b</a>
+      <nav class="top-actions" aria-label="Navegacao principal">
+        <button class="mode-button active" type="button" data-view="learn">Aprender o codigo</button>
+        <button class="mode-button" type="button" data-view="code">Ver versao em JavaScript</button>
+        <a class="source-link" href="Biblioteca_Beca.por">Portugol original</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Bookshelves_with_books_in_library.jpg/680px-Bookshelves_with_books_in_library.jpg"
+          alt="Estantes de livros em uma biblioteca"
+        >
+        <div class="hero-copy">
+          <p class="eyebrow">Sistema de biblioteca em Portugol</p>
+          <h1>Entenda cada parte do programa Biblioteca Beca.</h1>
+          <p>
+            O codigo controla um acervo pequeno, separa acesso de aluno e professor,
+            cadastra livros, consulta disponibilidade, registra emprestimos e calcula
+            devolucao com prazo de 50 dias.
+          </p>
+          <a class="jump-link" href="#fluxo">Comecar pelo fluxo</a>
+        </div>
+      </section>
+
+      <section class="view-panel active" data-panel="learn">
+        <section id="fluxo" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Fluxo principal</p>
+            <h2>Como o programa roda</h2>
+          </div>
+          <div class="flow-grid" aria-label="Sequencia de funcionamento">
+            <article class="flow-step">
+              <span>1</span>
+              <h3>Prepara livros iniciais</h3>
+              <p>
+                A variavel <code>livro</code> recebe 3. Em seguida, tres livros ja
+                entram no sistema: Dom Casmurro, O Hobbit e 1984.
+              </p>
+            </article>
+            <article class="flow-step">
+              <span>2</span>
+              <h3>Pede tipo de usuario</h3>
+              <p>
+                O usuario escolhe <code>1</code> para aluno ou <code>2</code> para
+                professor. Professor precisa digitar a senha <code>1234</code>.
+              </p>
+            </article>
+            <article class="flow-step">
+              <span>3</span>
+              <h3>Mostra o menu</h3>
+              <p>
+                O menu oferece cadastro, consulta, emprestimo, devolucao ou saida.
+                O programa executa uma opcao por vez.
+              </p>
+            </article>
+            <article class="flow-step">
+              <span>4</span>
+              <h3>Atualiza o acervo</h3>
+              <p>
+                Cada acao altera variaveis como <code>emp1</code>, <code>aluno1</code>
+                e <code>prazo_restante</code>, conforme o livro escolhido.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split">
+          <div>
+            <p class="eyebrow">Dados usados</p>
+            <h2>Mapa das variaveis</h2>
+            <p>
+              O programa nao usa listas. Por isso, cada livro tem seu proprio grupo
+              de variaveis: titulo, genero, autor, editora, ano, codigo, aluno e
+              status de emprestimo.
+            </p>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Tabela de variaveis">
+            <table>
+              <thead>
+                <tr>
+                  <th>Grupo</th>
+                  <th>Variaveis</th>
+                  <th>Funcao</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Login</td>
+                  <td><code>ap</code>, <code>senha_inicial</code>, <code>senha_2</code></td>
+                  <td>Decide se quem entrou e aluno ou professor.</td>
+                </tr>
+                <tr>
+                  <td>Livro</td>
+                  <td><code>liv1</code> a <code>liv5</code>, <code>cod1</code> a <code>cod5</code></td>
+                  <td>Guarda titulo e codigo de cada obra.</td>
+                </tr>
+                <tr>
+                  <td>Catalogo</td>
+                  <td><code>gen</code>, <code>aut</code>, <code>edt</code>, <code>ano</code></td>
+                  <td>Guarda genero, autor, editora e ano de publicacao.</td>
+                </tr>
+                <tr>
+                  <td>Emprestimo</td>
+                  <td><code>emp1</code> a <code>emp5</code>, <code>aluno1</code> a <code>aluno5</code></td>
+                  <td>Marca se o livro saiu e para qual aluno.</td>
+                </tr>
+                <tr>
+                  <td>Devolucao</td>
+                  <td><code>dia</code>, <code>prazo</code>, <code>prazo_restante</code></td>
+                  <td>Calcula atraso, multa e dias restantes.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Regras do sistema</p>
+            <h2>Requisitos funcionais</h2>
+          </div>
+          <div class="requirement-grid">
+            <article>
+              <h3>RF01 - Identificar usuario</h3>
+              <p>Permitir entrada como aluno ou professor antes do menu principal.</p>
+            </article>
+            <article>
+              <h3>RF02 - Validar professor</h3>
+              <p>Conferir a senha do professor com o valor fixo <code>1234</code>.</p>
+            </article>
+            <article>
+              <h3>RF03 - Cadastrar livros</h3>
+              <p>Adicionar codigo, titulo, genero, autor, editora e ano, respeitando o limite de 5 livros.</p>
+            </article>
+            <article>
+              <h3>RF04 - Consultar acervo</h3>
+              <p>Listar os livros cadastrados com seus dados e status de disponibilidade.</p>
+            </article>
+            <article>
+              <h3>RF05 - Emprestar livro</h3>
+              <p>Buscar pelo codigo, registrar aluno e marcar o livro como emprestado.</p>
+            </article>
+            <article>
+              <h3>RF06 - Devolver livro</h3>
+              <p>Buscar pelo codigo, ler dias com o livro, calcular multa ou dias restantes e liberar a obra.</p>
+            </article>
+            <article>
+              <h3>RF07 - Sair</h3>
+              <p>Encerrar a execucao quando a opcao 5 for escolhida.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Qualidade esperada</p>
+            <h2>Requisitos nao funcionais</h2>
+          </div>
+          <div class="requirement-grid">
+            <article>
+              <h3>RNF01 - Simplicidade</h3>
+              <p>Usar comandos basicos de entrada, saida e decisao, adequados para estudo inicial.</p>
+            </article>
+            <article>
+              <h3>RNF02 - Clareza</h3>
+              <p>Separar o codigo em blocos comentados: livros iniciais, login, menu e operacoes.</p>
+            </article>
+            <article>
+              <h3>RNF03 - Limite de memoria</h3>
+              <p>Trabalhar com ate 5 livros porque os dados ficam em variaveis fixas.</p>
+            </article>
+            <article>
+              <h3>RNF04 - Execucao local</h3>
+              <p>Rodar em ambiente Portugol sem banco de dados, internet ou servidor.</p>
+            </article>
+            <article>
+              <h3>RNF05 - Resposta imediata</h3>
+              <p>Mostrar mensagens logo apos cada cadastro, consulta, emprestimo ou devolucao.</p>
+            </article>
+            <article>
+              <h3>RNF06 - Baixa persistencia</h3>
+              <p>Guardar dados apenas enquanto o programa esta aberto; ao reiniciar, volta ao acervo inicial.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section option-list">
+          <div class="section-heading">
+            <p class="eyebrow">Menu</p>
+            <h2>O que cada opcao faz</h2>
+          </div>
+          <details open>
+            <summary>1 - Cadastrar livros</summary>
+            <p>
+              Aumenta <code>livro</code> em 1, pergunta os dados do novo livro e grava
+              nas variaveis correspondentes. Se ja houver 5 livros, exibe
+              <code>Limite atingido!</code>.
+            </p>
+          </details>
+          <details>
+            <summary>2 - Consultar</summary>
+            <p>
+              Verifica quantos livros existem e imprime cada conjunto de dados.
+              Se <code>empX</code> for verdadeiro, mostra o aluno; senao, mostra
+              <code>Disponivel</code>.
+            </p>
+          </details>
+          <details>
+            <summary>3 - Emprestar</summary>
+            <p>
+              Le um codigo, compara com <code>cod1</code> ate <code>cod5</code> e
+              marca <code>empX</code> como verdadeiro quando encontra um livro livre.
+            </p>
+          </details>
+          <details>
+            <summary>4 - Devolver</summary>
+            <p>
+              Confere se o livro estava emprestado. Depois pergunta quantos dias o
+              aluno ficou com ele. Acima de 50 dias cobra multa de 20 reais; ate 50
+              dias informa o prazo restante.
+            </p>
+          </details>
+          <details>
+            <summary>5 - Sair</summary>
+            <p>Mostra <code>Saindo...</code> e termina a execucao.</p>
+          </details>
+        </section>
+
+        <section class="section warning-band">
+          <div>
+            <p class="eyebrow">Pontos de atencao</p>
+            <h2>O que pode melhorar numa proxima versao</h2>
+          </div>
+          <ul>
+            <li>O aluno digita uma senha, mas ela nao e validada.</li>
+            <li>Depois de escolher uma opcao do menu, o programa termina; nao ha repeticao com laco.</li>
+            <li>Aluno tambem consegue escolher cadastro, pois a permissao nao e bloqueada no menu.</li>
+            <li>Codigos duplicados podem ser cadastrados.</li>
+            <li>Os dados nao ficam salvos depois que o programa fecha.</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="view-panel" data-panel="code">
+        <section class="section split code-intro">
+          <div>
+            <p class="eyebrow">Mesma ideia, outra linguagem</p>
+            <h2>Versao demonstrativa em JavaScript</h2>
+            <p>
+              A logica abaixo usa objetos e array para representar o mesmo sistema.
+              Assim fica mais facil crescer alem de 5 livros, validar permissoes e
+              repetir operacoes sem copiar varios blocos parecidos.
+            </p>
+          </div>
+          <div class="demo-panel">
+            <h3>Teste rapido</h3>
+            <label for="bookCode">Codigo do livro</label>
+            <input id="bookCode" type="number" min="1" value="1">
+            <label for="studentName">Aluno</label>
+            <input id="studentName" type="text" value="Beca">
+            <label for="daysHeld">Dias com o livro</label>
+            <input id="daysHeld" type="number" min="0" value="12">
+            <div class="demo-actions">
+              <button type="button" id="loanButton">Emprestar</button>
+              <button type="button" id="returnButton">Devolver</button>
+            </div>
+            <output id="demoOutput">Escolha uma acao.</output>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Codigo</p>
+            <h2>Implementacao equivalente</h2>
+          </div>
+          <pre class="code-block"><code id="jsCodeView"></code></pre>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Imagem: "Bookshelves with books in library", Westcott Phillip, U.S. Fish and Wildlife Service,
+        dominio publico via Wikimedia Commons.
+      </p>
+    </footer>
+
+    <script src="src/biblioteca-js.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
